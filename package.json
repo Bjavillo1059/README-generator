@@ -1,0 +1,23 @@
+{
+  "name": "README-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bjavillo1059/README-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bjavillo1059/README-generator/issues"
+  },
+  "homepage": "https://github.com/Bjavillo1059/README-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.1.2"
+  }
+}
