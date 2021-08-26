@@ -19,42 +19,47 @@
 
 // TODO: Include packages needed for this application
 const fs = require('fs');
-const inq = require('inquirer')
+const path = require('path'); // relative paths are used
+const inq = require('inquirer');
+
+
+const badge = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
 
 // TODO: Create an array of questions for user input
 const questions = [
     {
         name: 'title',
         type: 'input',
-        message: 'What is the title of your READEME'
+        message: 'What is the title of your application?'
     },
     {
         name: 'Description',
         type: 'input',
-        message: 'Please describe what you are doing within this README document?'
+        message: 'Please describe what you are doing within this application?'
     },
     {
         name: 'Table of Contents',
-        type: 'input',
-        message: 'Please add TOC of information here...'
+        type: 'checkbox',
+        message: 'Select the following items you want to add for your TOC',
+        choices: ['Description:', 'Technology Used:', 'License', 'Contributing', 'Questions',]
     },
     {
-        name: 'Installation'
+        name: 'License',
+        type: 'confirm',
+        message: 'Do you want to include an MIT license for your application?'
     },
     {
         name:'Usage',
         type: 'checkbox',
-        message: 'please the following stacks used for this README.md...'
+        message: 'Select the following stacks used for this README.md...',
+        choices: ['HTML', 'CSS', 'JavaScript', 'Other...',]
     },
-    {
-        name: 'License'
-    },
-    {
-        name: 'Contributing'
-    },
-    {
-        name: 'Tests'
-    },
+    // {
+    //     name: 'Contributing'
+    // },
+    // {
+    //     name: 'Tests'
+    // },
     {
         name: 'Questions',
         type: 'input',
@@ -73,9 +78,26 @@ function writeToFile(fileName, data) {}
 // TODO: Create a function to initialize app
 function init() {
     inq.prompt(questions)
-    .then(data => {
+    .then(function (data) {
+        genMD(data)
         console.log(data)
     }) 
+}
+
+
+function genMD(info) {
+    let markdown = "";
+
+    if (info.License) { // already a boolean statement
+        markdown += License;
+    } // no need to add else statement
+
+    markdown += `
+# ${info.title} 
+    `; // calls on the object info with the title property
+
+    fs.writeFileSync("readme.md", markdown) // what you what you want to name your file and where it lives
+
 }
 
 // Function call to initialize app
